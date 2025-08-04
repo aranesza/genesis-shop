@@ -1,78 +1,129 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>Genesis Shop | فروشگاه گیمینگ</title>
+  <title>جنسیس شاپ | Genesis_Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: sans-serif;
-      background: #e0f0ff;
-      color: #000;
-      text-align: center;
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: #e6f0ff;
       margin: 0;
       padding: 0;
     }
     header {
-      padding: 20px;
-      background: #4da6ff;
+      background-color: #3399ff;
       color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #007acc;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .search-box {
+      text-align: center;
+      margin: 20px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 60%;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
     }
     .product {
+      background-color: white;
       border: 1px solid #ccc;
-      margin: 20px;
-      padding: 15px;
       border-radius: 10px;
-      background: #ffffff;
-      max-width: 300px;
-      display: inline-block;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    button {
-      background: #3399ff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+      width: 250px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 10px #ccc;
     }
     footer {
-      background: #4da6ff;
+      background-color: #3399ff;
       color: white;
-      padding: 10px;
-      margin-top: 40px;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Genesis Shop</h1>
-    <p>فروش کرو پک فورتنایت، CP کالاف دیوتی و اکانت‌های خاص بازی</p>
+    <h1>جنسیس شاپ | فروشگاه اکانت PS5, PS4 و موبایل</h1>
   </header>
 
-  <section id="products">
-    <div class="product">
-      <h2>کرو پک فورتنایت</h2>
-      <p>قیمت: 400000 تومان</p>
-      <a href="https://zarinp.al/example-link" target="_blank"><button>پرداخت</button></a>
-    </div>
+  <nav>
+    <a href="#">صفحه اصلی</a>
+    <a href="#products">محصولات</a>
+    <a href="#gallery">گالری</a>
+    <a href="#about">درباره ما</a>
+    <a href="#contact">تماس با ما</a>
+  </nav>
 
-    <div class="product">
-      <h2>cp کالاف دیوتی</h2>
-      <p> قیمت: 150000 تومان</p>
-      <a href="https://zarinp.al/example-link" target="_blank"><button>پرداخت</button></a>
-    </div>
+  <div class="search-box">
+    <input type="text" placeholder="جستجوی اکانت مورد نظر...">
+  </div>
 
+  <section id="products" class="products">
     <div class="product">
-      <h2>اکانت PUBG لول 300</h2>
-      <p>قیمت: 5000000 تومان</p>
-      <a href="https://zarinp.al/example-link" target="_blank"><button>پرداخت</button></a>
+      <h3>اکانت PS5 - GTA V</h3>
+      <p>تحویل فوری، تضمینی</p>
+      <p>قیمت: ۴۵۰٬۰۰۰ تومان</p>
+    </div>
+    <div class="product">
+      <h3>اکانت PS4 - FIFA 24</h3>
+      <p>دسترسی کامل</p>
+      <p>قیمت: ۳۸۰٬۰۰۰ تومان</p>
+    </div>
+    <div class="product">
+      <h3>اکانت اندروید - PUBG</h3>
+      <p>لول ۶۵، اسکین حرفه‌ای</p>
+      <p>قیمت: ۵۵۰٬۰۰۰ تومان</p>
+    </div>
+  </section>
+
+  <section id="gallery" class="products">
+    <div class="product">
+      <h3>گالری</h3>
+      <img src="https://via.placeholder.com/200x120" alt="نمونه اکانت" style="width:100%; border-radius: 8px;">
+      <p>نمونه اکانت Call of Duty</p>
+    </div>
+  </section>
+
+  <section id="about" class="products">
+    <div class="product">
+      <h3>درباره ما</h3>
+      <p>جنسیس شاپ ارائه‌دهنده اکانت‌های قانونی و تضمینی برای PS5، PS4 و موبایل با پشتیبانی کامل.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="products">
+    <div class="product">
+      <h3>تماس با ما</h3>
+      <p>شماره تماس: ۰۲۱۴۰۴۴۴۶۱۵</p>
+      <p>پشتیبانی تلگرام و واتساپ: @Genesis_Support</p>
     </div>
   </section>
 
   <footer>
-    <p>تماس با ما: ۰09022343114</p>
-    <p>تحویل محصولات به صورت دستی پس از پرداخت انجام می‌شود.</p>
+    © 2025 جنسیس شاپ | تمامی حقوق محفوظ است.
   </footer>
 
 </body>
