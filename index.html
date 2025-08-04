@@ -7,128 +7,176 @@
   <style>
     body {
       font-family: 'Vazirmatn', sans-serif;
-      background: linear-gradient(to bottom, #d0e7ff, #ffffff);
+      background-color: #f0f8ff;
       margin: 0;
       padding: 0;
       color: #333;
     }
+
     header {
-      background: linear-gradient(to left, #3399ff, #66ccff);
-      color: white;
-      padding: 40px 20px;
+      background-color: #3399ff;
+      padding: 40px 20px 60px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      color: white;
+      position: relative;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
+
+    .categories {
+      position: absolute;
+      top: 10px;
+      display: flex;
+      gap: 8px;
     }
+
+    .categories.left {
+      right: 15px;
+    }
+
+    .categories.right {
+      left: 15px;
+    }
+
+    .categories img {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
     nav {
       background-color: #007acc;
-      padding: 10px;
       text-align: center;
+      padding: 10px;
     }
+
     nav a {
       color: white;
-      margin: 0 12px;
+      margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
-      transition: 0.3s;
     }
-    nav a:hover {
-      text-decoration: underline;
-    }
+
     .search-box {
       text-align: center;
-      margin: 30px auto;
+      margin: 20px;
     }
-    .search-box input[type="text"] {
-      padding: 12px 15px;
-      width: 60%;
-      max-width: 400px;
+
+    .search-box input {
+      padding: 10px;
+      width: 70%;
+      max-width: 350px;
+      border-radius: 20px;
       border: 1px solid #ccc;
-      border-radius: 25px;
-      font-size: 16px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
+
     .products {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 25px;
-      padding: 30px 15px;
+      gap: 20px;
+      padding: 30px 20px;
     }
+
     .product {
       background-color: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      width: 280px;
-      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 260px;
+      padding: 15px;
+      text-align: center;
       transition: 0.3s;
     }
+
     .product:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transform: translateY(-4px);
     }
-    .product img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-    .product h3 {
-      margin: 10px 0;
-      color: #007acc;
-    }
+
     footer {
       background-color: #3399ff;
       color: white;
       text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      margin-top: 40px;
+      padding: 40px 20px 80px;
+      position: relative;
+    }
+
+    .ghost {
+      position: absolute;
+      bottom: -40px;
+      right: 10px;
+      width: 100px;
+      opacity: 0.95;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>جنسیس شاپ | فروشگاه اکانت‌ بازی برای PS5، PS4 و موبایل</h1>
+    <h1>🎮 جنسیس شاپ | فروشگاه اکانت‌های بازی</h1>
+    <p>اکانت‌های PS5 - PS4 - موبایل با تحویل فوری</p>
+
+    <!-- دسته‌های کوچک بالا چپ و راست -->
+    <div class="categories left">
+      <img src="https://cdn-icons-png.flaticon.com/128/847/847969.png" title="بازی PS4">
+      <img src="https://cdn-icons-png.flaticon.com/128/3669/3669967.png" title="بتل‌پس">
+    </div>
+
+    <div class="categories right">
+      <img src="https://cdn-icons-png.flaticon.com/128/11319/11319977.png" title="اشتراک پلاس">
+      <img src="https://cdn-icons-png.flaticon.com/128/3916/3916968.png" title="آفر ویژه">
+    </div>
   </header>
 
   <nav>
-    <a href="#">صفحه اصلی</a>
+    <a href="#">خانه</a>
     <a href="#products">محصولات</a>
-    <a href="#gallery">گالری</a>
     <a href="#about">درباره ما</a>
     <a href="#contact">تماس با ما</a>
   </nav>
 
   <div class="search-box">
-    <input type="text" placeholder="🔍 جستجوی اکانت مورد نظر...">
+    <input type="text" placeholder="🔍 جستجو در محصولات...">
   </div>
 
   <section id="products" class="products">
     <div class="product">
-      <img src="https://via.placeholder.com/250x140?text=GTA+V+PS5" alt="اکانت GTA">
       <h3>اکانت PS5 - GTA V</h3>
-      <p>تحویل فوری، تضمینی</p>
-      <p><strong>قیمت: ۴۵۰٬۰۰۰ تومان</strong></p>
+      <p>تحویل آنی</p>
+      <p><strong>۴۵۰٬۰۰۰ تومان</strong></p>
     </div>
     <div class="product">
-      <img src="https://via.placeholder.com/250x140?text=FIFA+24+PS4" alt="اکانت فیفا">
-      <h3>اکانت PS4 - FIFA 24</h3>
-      <p>دسترسی کامل، قانونی</p>
-      <p><strong>قیمت: ۳۸۰٬۰۰۰ تومان</strong></p>
+      <h3>اکانت PS4 - Call of Duty</h3>
+      <p>قابل اشتراک</p>
+      <p><strong>۳۲۰٬۰۰۰ تومان</strong></p>
     </div>
     <div class="product">
-      <img src="https://via.placeholder.com/250x140?text=PUBG+Mobile" alt="اکانت پابجی">
       <h3>اکانت موبایل - PUBG</h3>
-      <p>لول ۶۵ + اسکین حرفه‌ای</p>
-      <p><strong>قیمت: ۵۵۰٬۰۰۰ تومان</strong></p>
+      <p>لول ۷۰ + اسکین</p>
+      <p><strong>۵۸۰٬۰۰۰ تومان</strong></p>
     </div>
   </section>
 
   <section id="about" class="products">
     <div class="product">
       <h3>درباره ما</h3>
-      <p>فروش
+      <p>ما در جنسیس شاپ، بهترین و مطمئن‌ترین اکانت‌های بازی را با پشتیبانی کامل ارائه می‌دهیم.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="products">
+    <div class="product">
+      <h3>تماس با ما</h3>
+      <p>تلفن: ۰۲۱۴۰۴۴۴۶۱۵</p>
+      <p>تلگرام: @Genesis_Support</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 جنسیس شاپ - تمامی حقوق محفوظ است.
+
+    <!-- تصویر گوست -->
+    <img class="ghost" src="https://i.ibb.co/G5qsWRV/ghost-cod-laptop.png" alt="گوست">
+  </footer>
+
+</body>
+</html>
