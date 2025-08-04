@@ -1,105 +1,187 @@
-<style>
-  body, html {
-    margin:0; padding:0; height:100vh; font-family: Vazirmatn, sans-serif;
-  }
-  .container {
-    display: flex; height: 100%;
-  }
-  .left {
-    flex: 1; background: #d6ecff; padding: 40px; box-sizing: border-box;
-  }
-  .right {
-    flex: 2; background: #fff; padding: 40px; box-sizing: border-box;
-    overflow-y: auto;
-  }
-  h1 {
-    color: #007acc;
-  }
-  .search-box input {
-    width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #bbb;
-    font-size: 16px;
-  }
-  .product {
-    background: #f0faff; margin-bottom: 20px; padding: 20px; border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-</style>
-<div class="container">
-  <div class="left">
-    <h1>جنسیس شاپ</h1>
-    <p>فروشگاه اکانت PS4، PS5 و موبایل</p>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>جنسیس شاپ | فروشگاه اکانت بازی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: #f4faff;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(to left, #d5ecff, #eaf6ff);
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    header h1 {
+      font-size: 2.7em;
+      color: #007acc;
+      margin-bottom: 15px;
+    }
+    header p {
+      font-size: 1.2em;
+      color: #444;
+    }
+    .search-box {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+    }
+    .search-box input {
+      padding: 12px;
+      width: 300px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+    }
+    .search-box button {
+      padding: 12px 24px;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+    }
+    .product-section {
+      padding: 60px 20px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 24px;
+      color: #007acc;
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #007acc;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+    .product-card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 20px;
+      width: 240px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+    .product-card h3 {
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+    .product-card p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .product-card .price {
+      font-weight: bold;
+      color: #28a745;
+      font-size: 16px;
+    }
+    /* بخش بازی ها و اکانت های ویژه */
+    .special-section {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #e1f0ff;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+      font-family: 'Vazirmatn', sans-serif;
+    }
+    .special-section h2 {
+      color: #007acc;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #007acc;
+      padding-bottom: 10px;
+    }
+    .special-section ul {
+      font-size: 17px;
+      color: #333;
+      line-height: 1.8;
+      padding-left: 20px;
+    }
+    .special-section p.contact-note {
+      margin-top: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #d9534f;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- بخش معرفی و جستجو -->
+  <header>
+    <h1>جنسیس شاپ | Genesis Shop</h1>
+    <p>فروشگاه تخصصی خرید اکانت‌های PS4، PS5 و موبایل</p>
     <div class="search-box">
-      <input type="text" placeholder="جستجو...">
+      <input type="text" placeholder="دنبال چه اکانتی می‌گردی؟" />
+      <button>جستجو</button>
     </div>
-  </div>
-  <div class="right">
-    <h2>محصولات</h2>
-    <div class="product">
-      <h3>اکانت GTA V | PS5</h3>
-      <p>قیمت: ۴۵۰,۰۰۰ تومان</p>
-    </div>
-    <div class="product">
-      <h3>اکانت کالاف دیوتی | PS4</h3>
-      <p>قیمت: ۳۲۰,۰۰۰ تومان</p>
-    </div>
-    <div class="product">
-      <h3>اکانت PUBG موبایل</h3>
-      <p>قیمت: ۵۸۰,۰۰۰ تومان</p>
-    </div>
-  </div>
-</div><style>
-  body, html {
-    margin:0; padding:0; font-family: Vazirmatn, sans-serif;
-  }
-  .top-section {
-    background: #d6ecff; padding: 40px; text-align: center;
-  }
-  .search-box input {
-    width: 60%; padding: 12px; border-radius: 10px; border: 1px solid #bbb;
-    font-size: 16px;
-  }
-  .bottom-section {
-    background: #fff; padding: 40px;
-  }
-  .product {
-    background: #f0faff; margin-bottom: 20px; padding: 20px; border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-</style>
+  </header>
 
-<div class="top-section">
-  <h1>جنسیس شاپ</h1>
-  <p>فروشگاه اکانت PS4، PS5 و موبایل</p>
-  <div class="search-box">
-    <input type="text" placeholder="جستجو...">
-  </div>
-</div>
+  <!-- بخش محصولات PS4/PS5 -->
+  <section class="product-section">
+    <h2 class="section-title">🎮 اکانت‌های PS4 / PS5</h2>
+    <div class="products">
+      <div class="product-card">
+        <h3>اکانت GTA V</h3>
+        <p>مخصوص PS4 / PS5</p>
+        <div class="price">۲۵۰٬۰۰۰ تومان</div>
+      </div>
+      <div class="product-card">
+        <h3>اکانت FIFA 23</h3>
+        <p>پشتیبانی از PS5</p>
+        <div class="price">۳۰۰٬۰۰۰ تومان</div>
+      </div>
+    </div>
 
-<div class="bottom-section">
-  <h2>محصولات</h2>
-  <div class="product">
-    <h3>اکانت GTA V | PS5</h3>
-    <p>قیمت: ۴۵۰,۰۰۰ تومان</p>
-  </div>
-  <div class="product">
-    <h3>اکانت کالاف دیوتی | PS4</h3>
-    <p>قیمت: ۳۲۰,۰۰۰ تومان</p>
-  </div>
-  <div class="product">
-    <h3>اکانت PUBG موبایل</h3>
-    <p>قیمت: ۵۸۰,۰۰۰ تومان</p>
-  </div>
-</div>
-<section style="max-width: 700px; margin: 50px auto; padding: 30px; background: #e1f0ff; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.1); font-family: 'Vazirmatn', sans-serif;">
-  <h2 style="color: #007acc; margin-bottom: 20px; border-bottom: 2px solid #007acc; padding-bottom: 10px;">🎮 بازی‌ها و اکانت‌های ویژه</h2>
-  <ul style="font-size: 17px; color: #333; line-height: 1.8; padding-left: 20px;">
-    <li>دیسک FC25</li>
-    <li>دیسک FC24</li>
-    <li>دیسک GTA V</li>
-    <li>دیسک Assassin's Creed</li>
-    <li>اکانت Plus Extra</li>
-  </ul>
-  <p style="margin-top: 25px; font-size: 18px; font-weight: bold; color: #d9534f;">
-    برای فروش اکانت
+    <!-- بخش محصولات موبایل -->
+    <h2 class="section-title" style="margin-top: 50px;">📱 اکانت‌های موبایل (اندروید / iOS)</h2>
+    <div class="products">
+      <div class="product-card">
+        <h3>اکانت کالاف دیوتی موبایل</h3>
+        <p>اندروید و آیفون</p>
+        <div class="price">۱۸۰٬۰۰۰ تومان</div>
+      </div>
+      <div class="product-card">
+        <h3>اکانت پابجی موبایل</h3>
+<p>لول بالا - اسلحه لجند</p>
+        <div class="price">۲۲۰٬۰۰۰ تومان</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- بخش بازی‌ها و اکانت‌های ویژه -->
+  <section class="special-section">
+    <h2>🎮 بازی‌ها و اکانت‌های ویژه</h2>
+    <ul>
+      <li>دیسک FC25</li>
+      <li>دیسک FC24</li>
+      <li>دیسک GTA V</li>
+      <li>دیسک Assassin's Creed</li>
+      <li>اکانت Plus Extra</li>
+    </ul>
+    <p class="contact-note">برای فروش اکانت تماس بگیرید</p>
+  </section>
+
+</body>
+</html>
 
 
