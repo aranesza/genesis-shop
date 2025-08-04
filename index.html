@@ -1,174 +1,92 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <title>جنسیس شاپ | فروشگاه اکانت بازی</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Vazirmatn', sans-serif;
-      background-color: #f0f8ff;
-      color: #333;
-    }
-
-    /* هدر */
-    .header {
-      background: linear-gradient(to left, #cbe9ff, #eaf6ff);
-      padding: 50px 20px 30px;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .header h1 {
-      color: #007acc;
-      font-size: 2.4em;
-      margin-bottom: 10px;
-    }
-
-    .header p {
-      font-size: 1.1em;
-      color: #444;
-    }
-
-    /* جستجو */
-    .search-box {
-      margin-top: 30px;
-    }
-
-    .search-box input {
-      width: 60%;
-      max-width: 400px;
-      padding: 12px 20px;
-      border-radius: 30px;
-      border: 1px solid #aaa;
-      font-size: 15px;
-      outline: none;
-      transition: 0.3s;
-    }
-
-    .search-box input:focus {
-      border-color: #007acc;
-      box-shadow: 0 0 6px #a6d9ff;
-    }
-
-    /* محصولات */
-    .products-section {
-      padding: 50px 20px;
-      background-color: #fff;
-    }
-
-    .products-title {
-      text-align: center;
-      font-size: 1.8em;
-      color: #007acc;
-      margin-bottom: 40px;
-    }
-
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    .product {
-      background-color: #f9fcff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      width: 280px;
-      padding: 20px;
-      text-align: center;
-      transition: 0.3s;
-    }
-
-    .product:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-
-    .product img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 15px;
-    }
-
-    .product h3 {
-      color: #005e9c;
-      margin: 10px 0;
-    }
-
-    .product p {
-      font-size: 15px;
-      margin: 5px 0;
-    }
-
-    .product button {
-      margin-top: 10px;
-      background-color: #007acc;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .product button:hover {
-      background-color: #005e9c;
-    }
-
-    @media (max-width: 768px) {
-      .search-box input {
-        width: 90%;
-      }
-
-      .product {
-        width: 90%;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- هدر -->
-  <div class="header">
-    <h1>🎮 جنسیس شاپ</h1>
-    <p>مرجع خرید اکانت‌های قانونی برای PS5، PS4 و موبایل</p>
+<style>
+  body, html {
+    margin:0; padding:0; height:100vh; font-family: Vazirmatn, sans-serif;
+  }
+  .container {
+    display: flex; height: 100%;
+  }
+  .left {
+    flex: 1; background: #d6ecff; padding: 40px; box-sizing: border-box;
+  }
+  .right {
+    flex: 2; background: #fff; padding: 40px; box-sizing: border-box;
+    overflow-y: auto;
+  }
+  h1 {
+    color: #007acc;
+  }
+  .search-box input {
+    width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #bbb;
+    font-size: 16px;
+  }
+  .product {
+    background: #f0faff; margin-bottom: 20px; padding: 20px; border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+</style>
+<div class="container">
+  <div class="left">
+    <h1>جنسیس شاپ</h1>
+    <p>فروشگاه اکانت PS4، PS5 و موبایل</p>
     <div class="search-box">
-      <input type="text" placeholder="🔍 جستجوی بازی یا اکانت...">
+      <input type="text" placeholder="جستجو...">
     </div>
   </div>
-
-  <!-- بخش محصولات -->
-  <div class="products-section">
-    <div class="products-title">🔥 محصولات پیشنهادی</div>
-    <div class="products">
-      <div class="product">
-        <img src="https://i.ibb.co/xsgRCNM/gta.jpg" alt="GTA V">
-        <h3>اکانت GTA V | PS5</h3>
-        <p>تحویل آنی</p>
-        <p><strong>۴۵۰٬۰۰۰ تومان</strong></p>
-        <button>خرید</button>
-      </div>
-      <div class="product">
-        <img src="https://i.ibb.co/7Jztjs1/cod.jpg" alt="Call of Duty">
-        <h3>اکانت Call of Duty | PS4</h3>
-        <p>قابل اشتراک</p>
-        <p><strong>۳۲۰٬۰۰۰ تومان</strong></p>
-        <button>خرید</button>
-      </div>
-      <div class="product">
-        <img src="https://i.ibb.co/5cjzQ1Y/pubg.jpg" alt="PUBG">
-        <h3>اکانت PUBG | موبایل</h3>
-        <p>لول ۷۰ + اسکین</p>
-        <p><strong>۵۸۰٬۰۰۰ تومان</strong></p>
-        <button>خرید</button>
-      </div>
+  <div class="right">
+    <h2>محصولات</h2>
+    <div class="product">
+      <h3>اکانت GTA V | PS5</h3>
+      <p>قیمت: ۴۵۰,۰۰۰ تومان</p>
+    </div>
+    <div class="product">
+      <h3>اکانت کالاف دیوتی | PS4</h3>
+      <p>قیمت: ۳۲۰,۰۰۰ تومان</p>
+    </div>
+    <div class="product">
+      <h3>اکانت PUBG موبایل</h3>
+      <p>قیمت: ۵۸۰,۰۰۰ تومان</p>
     </div>
   </div>
+</div><style>
+  body, html {
+    margin:0; padding:0; font-family: Vazirmatn, sans-serif;
+  }
+  .top-section {
+    background: #d6ecff; padding: 40px; text-align: center;
+  }
+  .search-box input {
+    width: 60%; padding: 12px; border-radius: 10px; border: 1px solid #bbb;
+    font-size: 16px;
+  }
+  .bottom-section {
+    background: #fff; padding: 40px;
+  }
+  .product {
+    background: #f0faff; margin-bottom: 20px; padding: 20px; border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+</style>
 
-</body>
-</html>
+<div class="top-section">
+  <h1>جنسیس شاپ</h1>
+  <p>فروشگاه اکانت PS4، PS5 و موبایل</p>
+  <div class="search-box">
+    <input type="text" placeholder="جستجو...">
+  </div>
+</div>
+
+<div class="bottom-section">
+  <h2>محصولات</h2>
+  <div class="product">
+    <h3>اکانت GTA V | PS5</h3>
+    <p>قیمت: ۴۵۰,۰۰۰ تومان</p>
+  </div>
+  <div class="product">
+    <h3>اکانت کالاف دیوتی | PS4</h3>
+    <p>قیمت: ۳۲۰,۰۰۰ تومان</p>
+  </div>
+  <div class="product">
+    <h3>اکانت PUBG موبایل</h3>
+    <p>قیمت: ۵۸۰,۰۰۰ تومان</p>
+  </div>
+</div>
