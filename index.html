@@ -7,15 +7,21 @@
   <style>
     body {
       font-family: 'Vazirmatn', sans-serif;
-      background-color: #e6f0ff;
+      background: linear-gradient(to bottom, #d0e7ff, #ffffff);
       margin: 0;
       padding: 0;
+      color: #333;
     }
     header {
-      background-color: #3399ff;
+      background: linear-gradient(to left, #3399ff, #66ccff);
       color: white;
-      padding: 20px;
+      padding: 40px 20px;
       text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
     }
     nav {
       background-color: #007acc;
@@ -24,49 +30,69 @@
     }
     nav a {
       color: white;
-      margin: 0 15px;
+      margin: 0 12px;
       text-decoration: none;
       font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     .search-box {
       text-align: center;
-      margin: 20px;
+      margin: 30px auto;
     }
-    input[type="text"] {
-      padding: 10px;
+    .search-box input[type="text"] {
+      padding: 12px 15px;
       width: 60%;
-      border: 1px solid #aaa;
-      border-radius: 5px;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      font-size: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     .products {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
-      padding: 20px;
+      gap: 25px;
+      padding: 30px 15px;
     }
     .product {
-      background-color: white;
-      border: 1px solid #ccc;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 280px;
+      padding: 20px;
+      transition: 0.3s;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .product img {
+      width: 100%;
       border-radius: 10px;
-      width: 250px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 0 10px #ccc;
+      margin-bottom: 15px;
+    }
+    .product h3 {
+      margin: 10px 0;
+      color: #007acc;
     }
     footer {
       background-color: #3399ff;
       color: white;
       text-align: center;
       padding: 20px;
-      margin-top: 30px;
+      font-size: 14px;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>جنسیس شاپ | فروشگاه اکانت PS5, PS4 و موبایل</h1>
+    <h1>جنسیس شاپ | فروشگاه اکانت‌ بازی برای PS5، PS4 و موبایل</h1>
   </header>
 
   <nav>
@@ -78,53 +104,31 @@
   </nav>
 
   <div class="search-box">
-    <input type="text" placeholder="جستجوی اکانت مورد نظر...">
+    <input type="text" placeholder="🔍 جستجوی اکانت مورد نظر...">
   </div>
 
   <section id="products" class="products">
     <div class="product">
+      <img src="https://via.placeholder.com/250x140?text=GTA+V+PS5" alt="اکانت GTA">
       <h3>اکانت PS5 - GTA V</h3>
       <p>تحویل فوری، تضمینی</p>
-      <p>قیمت: ۴۵۰٬۰۰۰ تومان</p>
+      <p><strong>قیمت: ۴۵۰٬۰۰۰ تومان</strong></p>
     </div>
     <div class="product">
+      <img src="https://via.placeholder.com/250x140?text=FIFA+24+PS4" alt="اکانت فیفا">
       <h3>اکانت PS4 - FIFA 24</h3>
-      <p>دسترسی کامل</p>
-      <p>قیمت: ۳۸۰٬۰۰۰ تومان</p>
+      <p>دسترسی کامل، قانونی</p>
+      <p><strong>قیمت: ۳۸۰٬۰۰۰ تومان</strong></p>
     </div>
     <div class="product">
-      <h3>اکانت اندروید - PUBG</h3>
-      <p>لول ۶۵، اسکین حرفه‌ای</p>
-      <p>قیمت: ۵۵۰٬۰۰۰ تومان</p>
-    </div>
-  </section>
-
-  <section id="gallery" class="products">
-    <div class="product">
-      <h3>گالری</h3>
-      <img src="https://via.placeholder.com/200x120" alt="نمونه اکانت" style="width:100%; border-radius: 8px;">
-      <p>نمونه اکانت Call of Duty</p>
+      <img src="https://via.placeholder.com/250x140?text=PUBG+Mobile" alt="اکانت پابجی">
+      <h3>اکانت موبایل - PUBG</h3>
+      <p>لول ۶۵ + اسکین حرفه‌ای</p>
+      <p><strong>قیمت: ۵۵۰٬۰۰۰ تومان</strong></p>
     </div>
   </section>
 
   <section id="about" class="products">
     <div class="product">
       <h3>درباره ما</h3>
-      <p>جنسیس شاپ ارائه‌دهنده اکانت‌های قانونی و تضمینی برای PS5، PS4 و موبایل با پشتیبانی کامل.</p>
-    </div>
-  </section>
-
-  <section id="contact" class="products">
-    <div class="product">
-      <h3>تماس با ما</h3>
-      <p>شماره تماس: ۰۲۱۴۰۴۴۴۶۱۵</p>
-      <p>پشتیبانی تلگرام و واتساپ: @Genesis_Support</p>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 جنسیس شاپ | تمامی حقوق محفوظ است.
-  </footer>
-
-</body>
-</html>
+      <p>فروش
