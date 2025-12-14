@@ -3,589 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پایگاه بسیج شهیدان نظری - ثبت‌نام مسابقات و کلاس‌ها</title>
+    <title>پایگاه بسیج شهیدان نظری - ثبت‌نام کلاس‌ها</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
     <style>
-        /* Reset & Base Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', 'B Nazanin', 'IRANSans', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #c70000; /* رنگ بسیج - قرمز */
-            --secondary: #1a237e; /* آبی تیره */
-            --accent: #ff9800; /* نارنجی */
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --success: #2e7d32; /* سبز */
-            --card-bg: #ffffff;
-            --body-bg: #f5f5f5;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --header-gradient: linear-gradient(135deg, #c70000, #8b0000); /* گرادیانت قرمز بسیج */
-        }
-
-        body {
-            background-color: var(--body-bg);
-            color: var(--dark);
-            line-height: 1.6;
-            padding-bottom: 80px; /* Space for bottom nav */
-            min-height: 100vh;
-        }
-
-        /* Header */
-        .main-header {
-            background: var(--header-gradient);
-            color: white;
-            padding: 1.2rem 1rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 4px solid #ffd700;
-        }
-
-        .baseej-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 0.5rem;
-        }
-
-        .baseej-logo i {
-            font-size: 2rem;
-            color: #ffd700;
-        }
-
-        .baseej-logo h1 {
-            font-size: 1.4rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
-
-        .header-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-top: 0.3rem;
-        }
-
-        .shahid-badge {
-            background-color: rgba(255, 255, 255, 0.15);
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-            display: inline-block;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-
-        /* Main Content */
-        main {
-            padding: 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            margin: 2rem 0 1.2rem 0;
-            color: var(--secondary);
-            font-size: 1.3rem;
-            border-bottom: 3px solid var(--primary);
-            padding-bottom: 0.5rem;
-            position: relative;
-        }
-
-        .section-title i {
-            margin-left: 0.5rem;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            right: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent);
-        }
-
-        /* Cards Container */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .class-card, .competition-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.2rem 1rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border-top: 4px solid var(--primary);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            min-height: 140px;
-        }
-
-        .class-card:hover, .competition-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-        }
-
-        .class-icon {
-            font-size: 2.2rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary);
-        }
-
-        .class-title {
-            font-weight: bold;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .class-desc {
-            font-size: 0.8rem;
-            color: var(--gray);
-            margin-bottom: 0.8rem;
-        }
-
-        .register-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.5rem 1.2rem;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-            margin-top: auto;
-            font-weight: bold;
-        }
-
-        .register-btn:hover {
-            background-color: var(--secondary);
-        }
-
-        /* Competition Section */
-        .competition-card {
-            border-top: 4px solid var(--accent);
-            background: linear-gradient(135deg, #fff8e1, #ffffff);
-        }
-
-        .no-competition {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem 1rem;
-            color: var(--gray);
-        }
-
-        .no-competition i {
-            font-size: 3rem;
-            color: #e0e0e0;
-            margin-bottom: 1rem;
-        }
-
-        .no-competition p {
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .no-competition .note {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        /* Bottom Navigation */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 0.8rem 0;
-            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
-            z-index: 100;
-            border-top: 2px solid var(--primary);
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: color 0.3s;
-            flex: 1;
-        }
-
-        .nav-item.active, .nav-item:hover {
-            color: var(--primary);
-        }
-
-        .nav-item i {
-            font-size: 1.4rem;
-            margin-bottom: 0.3rem;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            margin-top: 2rem;
-            color: var(--gray);
-            font-size: 0.85rem;
-            border-top: 1px solid #e0e0e0;
-            background-color: white;
-        }
-
-        .footer-logo {
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 480px) {
-            .cards-container {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                gap: 0.8rem;
-            }
-            
-            .class-card, .competition-card {
-                padding: 1rem 0.8rem;
-                min-height: 130px;
-            }
-            
-            .class-icon {
-                font-size: 1.8rem;
-            }
-            
-            .main-header h1 {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Modal for registration */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: modalFade 0.3s;
-        }
-
-        @keyframes modalFade {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 2px solid var(--body-bg);
-        }
-
-        .modal-title {
-            color: var(--primary);
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .close-modal {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray);
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.4rem;
-            color: var(--dark);
-            font-weight: 500;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 0.7rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border 0.3s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-
-        .submit-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.8rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--secondary);
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', 'B Nazanin', Tahoma; }
+        :root { --primary: #c70000; --secondary: #8b0000; --accent: #ffd700; --light: #fff5f5; --dark: #222; }
+        body { background: var(--light); color: var(--dark); line-height: 1.6; padding-bottom: 70px; }
+        
+        /* هدر بسیجی */
+        .basij-header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; 
+                       padding: 1.2rem 1rem; text-align: center; border-bottom: 4px solid var(--accent); }
+        .basij-title { font-size: 1.4rem; margin-bottom: 0.3rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        .basij-subtitle { font-size: 0.9rem; opacity: 0.9; }
+        .shahid-badge { background: rgba(255,255,255,0.1); padding: 0.3rem 1rem; border-radius: 20px; 
+                       margin-top: 0.5rem; display: inline-block; font-size: 0.8rem; border: 1px solid var(--accent); }
+        
+        /* کارت کلاس‌ها */
+        .classes-container { padding: 1rem; max-width: 800px; margin: 0 auto; }
+        .section-title { color: var(--primary); margin: 1.5rem 0 1rem; font-size: 1.3rem; border-bottom: 3px solid var(--primary); 
+                        padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .class-card { background: white; border-radius: 12px; padding: 1rem; margin: 1rem 0; box-shadow: 0 4px 12px rgba(199,0,0,0.1);
+                     border-right: 5px solid var(--primary); transition: transform 0.3s; }
+        .class-card:hover { transform: translateY(-3px); }
+        .class-icon { font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .class-name { font-weight: bold; font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .class-desc { color: #666; font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .register-btn { background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; 
+                       border-radius: 25px; width: 100%; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        .register-btn:hover { background: var(--secondary); }
+        
+        /* مسابقات */
+        .competition-card { background: linear-gradient(135deg, #fff8e1, #ffecb3); border: 2px dashed #ff9800; 
+                          text-align: center; padding: 2rem 1rem; border-radius: 12px; margin: 2rem 0; }
+        .no-competition { font-size: 1.1rem; color: #e65100; }
+        
+        /* پنل مدیریت */
+        .admin-panel { background: linear-gradient(135deg, #1565c0, #0d47a1); color: white; padding: 1rem; 
+                      border-radius: 12px; margin: 2rem 0; text-align: center; }
+        .admin-btn { background: #ff9800; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; 
+                    margin: 0.5rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        
+        /* فوتر */
+        .basij-footer { text-align: center; padding: 1.5rem; color: #666; font-size: 0.9rem; border-top: 2px solid #eee; 
+                       margin-top: 2rem; }
+        .footer-logo { color: var(--primary); font-weight: bold; margin-bottom: 0.5rem; }
+        
+        /* ناوبری پایین */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around;
+                     padding: 0.8rem 0; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); border-top: 2px solid var(--primary); }
+        .nav-item { color: #666; text-decoration: none; text-align: center; font-size: 0.8rem; }
+        .nav-item.active { color: var(--primary); }
+        
+        @media (max-width: 480px) { .basij-title { font-size: 1.2rem; } .class-card { padding: 0.8rem; } }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="main-header">
-        <div class="baseej-logo">
-            <i class="bi bi-flag-fill"></i>
-            <h1>پایگاه بسیج شهیدان نظری</h1>
+    <!-- هدر بسیج -->
+    <header class="basij-header">
+        <div class="basij-title">
+            <i class="bi bi-flag-fill"></i> پایگاه بسیج شهیدان نظری
         </div>
-        <p class="header-subtitle">سامانه ثبت‌نام آنلاین مسابقات و کلاس‌های آموزشی</p>
+        <div class="basij-subtitle">سامانه ثبت‌نام آنلاین کلاس‌های آموزشی</div>
         <div class="shahid-badge">
             <i class="bi bi-stars"></i> یادواره شهدای والامقام
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Classes Section -->
-        <h2 class="section-title">
-            <i class="bi bi-mortarboard-fill"></i> کلاس‌های آموزشی پایگاه
-        </h2>
+    <!-- کلاس‌ها -->
+    <main class="classes-container">
+        <h2 class="section-title"><i class="bi bi-mortarboard-fill"></i> کلاس‌های آموزشی پایگاه</h2>
         
-        <div class="cards-container">
-            <!-- Class 1 -->
-            <div class="class-card">
-                <i class="bi bi-code-slash class-icon"></i>
-                <div class="class-title">برنامه‌نویسی</div>
-                <p class="class-desc">مقدماتی تا پیشرفته</p>
-                <button class="register-btn" onclick="openModal('برنامه‌نویسی')">ثبت‌نام</button>
-            </div>
-            
-            <!-- Class 2 -->
-            <div class="class-card">
-                <i class="bi bi-brush-fill class-icon"></i>
-                <div class="class-title">فتوشاپ</div>
-                <p class="class-desc">طراحی گرافیک</p>
-                <button class="register-btn" onclick="openModal('فتوشاپ')">ثبت‌نام</button>
-            </div>
-            
-            <!-- Class 3 -->
-            <div class="class-card">
-                <i class="bi bi-person-running class-icon"></i>
-                <div class="class-title">فوتبال هفتگی</div>
-                <p class="class-desc">تمرین تیمی هفتگی</p>
-                <button class="register-btn" onclick="openModal('فوتبال هفتگی')">ثبت‌نام</button>
-            </div>
-            
-            <!-- Class 4 -->
-            <div class="class-card">
-                <i class="bi bi-lightning-charge-fill class-icon"></i>
-                <div class="class-title">برق</div>
-                <p class="class-desc">آموزش برق ساختمان</p>
-                <button class="register-btn" onclick="openModal('برق')">ثبت‌نام</button>
-            </div>
-            
-            <!-- Class 5 -->
-            <div class="class-card">
-                <i class="bi bi-shield-shaded class-icon"></i>
-                <div class="class-title">باشگاه رزمی MMA</div>
-                <p class="class-desc">دفاع شخصی حرفه‌ای</p>
-                <button class="register-btn" onclick="openModal('باشگاه رزمی MMA')">ثبت‌نام</button>
-            </div>
-            
-            <!-- Class 6 -->
-            <div class="class-card">
-                <i class="bi bi-journal-bookmark-fill class-icon"></i>
-                <div class="class-title">احکام</div>
-                <p class="class-desc">آموزش مسائل شرعی</p>
-                <button class="register-btn" onclick="openModal('احکام')">ثبت‌نام</button>
-            </div>
-            
-            <!-- Class 7 -->
-            <div class="class-card">
-                <i class="bi bi-pc-display class-icon"></i>
-                <div class="class-title">نصب ویندوز</div>
-                <p class="class-desc">آموزش نصب و تنظیمات</p>
-                <button class="register-btn" onclick="openModal('نصب ویندوز')">ثبت‌نام</button>
-            </div>
-            
-            <!-- Class 8 -->
-            <div class="class-card">
-                <i class="bi bi-translate class-icon"></i>
-                <div class="class-title">عربی</div>
-                <p class="class-desc">آموزش زبان عربی</p>
-                <button class="register-btn" onclick="openModal('عربی')">ثبت‌نام</button>
-            </div>
+        <!-- برنامه‌نویسی -->
+        <div class="class-card">
+            <i class="bi bi-code-slash class-icon"></i>
+            <div class="class-name">برنامه‌نویسی</div>
+            <div class="class-desc">آموزش مقدماتی تا پیشرفته برنامه‌نویسی</div>
+            <button class="register-btn" onclick="registerClass('برنامه‌نویسی')">
+                <i class="bi bi-pencil-square"></i> ثبت‌نام در این کلاس
+            </button>
+        </div>
+        
+        <!-- فتوشاپ -->
+        <div class="class-card">
+            <i class="bi bi-brush-fill class-icon"></i>
+            <div class="class-name">فتوشاپ</div>
+            <div class="class-desc">طراحی گرافیک و ادیت حرفه‌ای تصاویر</div>
+            <button class="register-btn" onclick="registerClass('فتوشاپ')">
+                <i class="bi bi-pencil-square"></i> ثبت‌نام در این کلاس
+            </button>
+        </div>
+        
+        <!-- فوتبال -->
+        <div class="class-card">
+            <i class="bi bi-person-running class-icon"></i>
+            <div class="class-name">فوتبال هفتگی</div>
+            <div class="class-desc">تمرین تیمی و مسابقات فوتبال هفتگی</div>
+            <button class="register-btn" onclick="registerClass('فوتبال هفتگی')">
+                <i class="bi bi-pencil-square"></i> ثبت‌نام در این کلاس
+            </button>
+        </div>
+        
+        <!-- برق -->
+        <div class="class-card">
+            <i class="bi bi-lightning-charge-fill class-icon"></i>
+            <div class="class-name">برق</div>
+            <div class="class-desc">آموزش برق ساختمان و تعمیرات</div>
+            <button class="register-btn" onclick="registerClass('برق')">
+                <i class="bi bi-pencil-square"></i> ثبت‌نام در این کلاس
+            </button>
+        </div>
+        
+        <!-- رزمی -->
+        <div class="class-card">
+            <i class="bi bi-shield-shaded class-icon"></i>
+            <div class="class-name">باشگاه رزمی MMA</div>
+            <div class="class-desc">دفاع شخصی و هنرهای رزمی ترکیبی</div>
+            <button class="register-btn" onclick="registerClass('باشگاه رزمی MMA')">
+                <i class="bi bi-pencil-square"></i> ثبت‌نام در این کلاس
+            </button>
+        </div>
+        
+        <!-- احکام -->
+        <div class="class-card">
+            <i class="bi bi-journal-bookmark-fill class-icon"></i>
+            <div class="class-name">احکام</div>
+            <div class="class-desc">آموزش مسائل شرعی و احکام اسلامی</div>
+            <button class="register-btn" onclick="registerClass('احکام')">
+                <i class="bi bi-pencil-square"></i> ثبت‌نام در این کلاس
+            </button>
+        </div>
+        
+        <!-- ویندوز -->
+        <div class="class-card">
+            <i class="bi bi-pc-display class-icon"></i>
+            <div class="class-name">نصب ویندوز</div>
+            <div class="class-desc">آموزش نصب و عیب‌یابی سیستم عامل</div>
+            <button class="register-btn" onclick="registerClass('نصب ویندوز')">
+                <i class="bi bi-pencil-square"></i> ثبت‌نام در این کلاس
+            </button>
+        </div>
+        
+        <!-- عربی -->
+        <div class="class-card">
+            <i class="bi bi-translate class-icon"></i>
+            <div class="class-name">عربی</div>
+            <div class="class-desc">آموزش زبان عربی مکالمه و قواعد</div>
+            <button class="register-btn" onclick="registerClass('عربی')">
+                <i class="bi bi-pencil-square"></i> ثبت‌نام در این کلاس
+            </button>
         </div>
 
-        <!-- Competitions Section -->
-        <h2 class="section-title">
-            <i class="bi bi-trophy-fill"></i> مسابقات پایگاه
-        </h2>
-        
+        <!-- مسابقات -->
+        <h2 class="section-title"><i class="bi bi-trophy-fill"></i> مسابقات پایگاه</h2>
         <div class="competition-card">
-            <div class="no-competition">
-                <i class="bi bi-calendar-x"></i>
-                <p>مسابقه‌ای در حال برگزاری نیست</p>
-                <p class="note">به زودی مسابقات جدید اطلاع‌رسانی خواهد شد</p>
-                <button class="register-btn" style="margin-top: 1.5rem; max-width: 200px;" disabled>مسابقه فعالی وجود ندارد</button>
-            </div>
+            <i class="bi bi-calendar-x" style="font-size: 3rem; color: #ff9800; margin-bottom: 1rem;"></i>
+            <div class="no-competition">مسابقه‌ای در حال برگزاری نیست</div>
+            <p style="color: #666; margin-top: 0.5rem;">به زودی مسابقات جدید اطلاع‌رسانی خواهد شد</p>
+        </div>
+
+        <!-- پنل مدیریت -->
+        <div class="admin-panel">
+            <h3><i class="bi bi-shield-check"></i> دسترسی مدیریتی</h3>
+            <p>برای مشاهده ثبت‌نام‌ها از لینک‌های زیر استفاده کنید:</p>
+            <a href="https://docs.google.com/forms/d/1Im2rcsaZks2M24lsWoZ4Ied5gJl_KaRRLZTi-zeRAMg/viewform" 
+               target="_blank" class="admin-btn">
+               <i class="bi bi-pencil-square"></i> فرم ثبت‌نام
+            </a>
+            <a href="https://docs.google.com/spreadsheets/" target="_blank" class="admin-btn">
+               <i class="bi bi-table"></i> مشاهده ثبت‌نام‌ها
+            </a>
         </div>
     </main>
 
-    <!-- Registration Modal -->
-    <div id="registrationModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">ثبت‌نام در کلاس</h3>
-                <span class="close-modal" onclick="closeModal()">&times;</span>
-            </div>
-            <form id="registrationForm">
-                <div class="form-group">
-                    <label for="className">نام کلاس:</label>
-                    <input type="text" id="className" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="fullName">نام و نام خانوادگی:</label>
-                    <input type="text" id="fullName" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">شماره تلفن:</label>
-                    <input type="tel" id="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="age">سن:</label>
-                    <input type="number" id="age" min="10" max="60" required>
-                </div>
-                <div class="form-group">
-                    <label for="education">تحصیلات:</label>
-                    <select id="education" required>
-                        <option value="">انتخاب کنید</option>
-                        <option value="diploma">دیپلم</option>
-                        <option value="associate">فوق دیپلم</option>
-                        <option value="bachelor">لیسانس</option>
-                        <option value="master">فوق لیسانس</option>
-                        <option value="doctorate">دکترا</option>
-                    </select>
-                </div>
-                <button type="submit" class="submit-btn">تأیید و ثبت نام</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- فوتر -->
+    <footer class="basij-footer">
         <div class="footer-logo">پایگاه بسیج شهیدان نظری</div>
         <p>مفتخریم در خدمت‌رسانی به شما هستیم</p>
-        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #999;">
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">
             <i class="bi bi-telephone"></i> تلفن تماس: ۰۲۱-XXXXXXX
         </p>
     </footer>
 
-    <!-- Bottom Navigation -->
+    <!-- ناوبری پایین -->
     <nav class="bottom-nav">
         <a href="#" class="nav-item active">
             <i class="bi bi-house-door"></i>
-            <span>خانه</span>
+            <div>خانه</div>
+        </a>
+        <a href="https://docs.google.com/forms/d/1Im2rcsaZks2M24lsWoZ4Ied5gJl_KaRRLZTi-zeRAMg/viewform" 
+           target="_blank" class="nav-item">
+            <i class="bi bi-pencil-square"></i>
+            <div>ثبت‌نام</div>
+        </a>
+        <a href="https://docs.google.com/spreadsheets/" target="_blank" class="nav-item">
+            <i class="bi bi-eye"></i>
+            <div>مشاهده</div>
         </a>
         <a href="#" class="nav-item">
-            <i class="bi bi-calendar-check"></i>
-            <span>کلاس‌ها</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="bi bi-trophy"></i>
-            <span>مسابقات</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="bi bi-person-circle"></i>
-            <span>پروفایل</span>
+            <i class="bi bi-info-circle"></i>
+            <div>درباره</div>
         </a>
     </nav>
 
     <script>
-        // Modal functions
-        function openModal(className) {
-            document.getElementById('className').value = className;
-            document.getElementById('registrationModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+        // لینک فرم گوگل
+        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/1Im2rcsaZks2M24lsWoZ4Ied5gJl_KaRRLZTi-zeRAMg/viewform";
+        
+        // تابع ثبت‌نام
+        function registerClass(className) {
+            // ذخیره نام کلاس در حافظه مرورگر
+            localStorage.setItem('lastSelectedClass', className);
+            
+            // باز کردن فرم در تب جدید
+            window.open(GOOGLE_FORM_URL, '_blank');
+            
+            // نمایش پیام
+            alert(`کلاس "${className}" انتخاب شد\nدر حال هدایت به فرم ثبت‌نام...`);
         }
-
-        function closeModal() {
-            document.getElementById('registrationModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+        
+        // ذخیره‌سازی محلی برای پشتیبان
+        function saveRegistrationLocally(data) {
+            let registrations = JSON.parse(localStorage.getItem('basijRegistrations') || '[]');
+            registrations.push({
+                ...data,
+                date: new Date().toLocaleString('fa-IR'),
+                timestamp: Date.now()
+            });
+            localStorage.setItem('basijRegistrations', JSON.stringify(registrations));
         }
-
-        // Form submission
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const className = document.getElementById('className').value;
-            const fullName = document.getElementById('fullName').value;
-            const phone = document.getElementById('phone').value;
-            
-            alert(`ثبت‌نام شما در کلاس "${className}" با موفقیت دریافت شد.\n\nنام: ${fullName}\nتلفن: ${phone}\n\nهمکاران ما به زودی با شما تماس خواهند گرفت.`);
-            
-            // Reset form and close modal
-            this.reset();
-            closeModal();
+        
+        // نمایش تعداد ثبت‌نام‌های محلی
+        function showLocalStats() {
+            const regs = JSON.parse(localStorage.getItem('basijRegistrations') || '[]');
+            console.log(`ثبت‌نام‌های آفلاین: ${regs.length}`);
+        }
+        
+        // اجرا هنگام بارگذاری صفحه
+        document.addEventListener('DOMContentLoaded', function() {
+            showLocalStats();
+            console.log('سایت پایگاه بسیج شهیدان نظری آماده است');
         });
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('registrationModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
     </script>
 </body>
-                </html>
+</html>
