@@ -5,8 +5,7 @@ M.Sayadi: <html lang="fa" dir="rtl">
     <title>پایگاه شهیدان نظری - سامانه کلاس‌ها</title>
     <style>
         /* استفاده از فونت رسمی Vazirmatn به عنوان پیش‌فرض خوب */
-        /* توجه: آدرس فونت Vazirmatn در کد اصلی شما ایراد داشت، این آدرس اصلاح شده است. */
-        @import url('https://v1.fontiran.com/css?family=Vazirmatn:400,500,700&display=swap');
+        @import url('https://v1.fontانتظار.com/css?family=Vazirmatn:400,500,700&display=swap');
 
         body {
             font-family: 'Vazirmatn', Tahoma, sans-serif;
@@ -24,6 +23,7 @@ M.Sayadi: <html lang="fa" dir="rtl">
             font-size: 1.8em;
             font-weight: 700;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+            /* تلاش برای شبیه سازی بهتر فونت هدر - فونت نستعلیق واقعی نیاز به بارگذاری فونت وب دارد */
             text-shadow: 2px 2px 4px #000000; 
         }
         .container {
@@ -132,8 +132,7 @@ M.Sayadi: <html lang="fa" dir="rtl">
             padding: 20px;
             border-radius: 10px;
             background-color: white;
-            box-shadow:
-M.Sayadi: 0 2px 5px rgba(0, 0, 0, 0.05);
+M.Sayadi: box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             position: relative;
             border-left: 4px solid #3f51b5;
         }
@@ -199,8 +198,7 @@ M.Sayadi: 0 2px 5px rgba(0, 0, 0, 0.05);
         </form>
 
         <!-- دکمه مشاهده برای مدیر سایت -->
-        <!-- این دکمه را طوری طراحی کردم که فقط در حالت توسعه یا توسط کسی که به کنسول دسترسی دارد قابل استفاده باشد -->
-        <button id="viewBtn" onclick="showRegistrations()">🔍 مشاهده و مدیریت ثبت‌نام‌ها (تنها برای مدیر)</button>
+        <button id="viewBtn" onclick="showRegistrations()">🔍 مشاهده و مدیریت ثبت‌نام‌ها</button>
 
         <!-- بخش نمایش و مدیریت -->
         <section id="resultSection">
@@ -216,8 +214,7 @@ M.Sayadi: 0 2px 5px rgba(0, 0, 0, 0.05);
         const FORM = document.getElementById('registrationForm');
         const VIEW_SECTION = document.getElementById('resultSection');
         const OUTPUT_DIV = document.getElementById('output');
-        // کلید ذخیره سازی در حافظه مرورگر
-        const STORAGE_KEY = 'classRegistrations_NazariBase'; 
+        const STORAGE_KEY = 'classRegistrations'; 
 
         // 1. مدیریت ارسال فرم (ثبت‌نام)
         FORM.addEventListener('submit', function(event) {
@@ -237,22 +234,20 @@ M.Sayadi: 0 2px 5px rgba(0, 0, 0, 0.05);
                 phone: document.getElementById("phone").value,
                 classes: selectedClasses,
                 timestamp: new Date().toISOString()
-M.Sayadi: };
+            };
 
-            // دریافت لیست قبلی یا ایجاد لیست جدید
             let allRegistrations = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
             allRegistrations.push(newRegistration);
-            
-            // ذخیره لیست به روز شده
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(allRegistrations));
+            localStorage.setItem
+M.Sayadi: (STORAGE_KEY, JSON.stringify(allRegistrations));
 
-            alert("✅ ثبت‌نام شما با موفقیت انجام شد. لطفاً برای مشاهده لیست نهایی، از طریق پنل مدیریت اقدام نمایید.");
+            alert("✅ ثبت‌نام شما با موفقیت انجام شد. برای مشاهده لیست ثبت شده، دکمه مدیریت را فشار دهید.");
             FORM.reset(); 
             VIEW_SECTION.style.display = 'none'; 
         });
 
         // 2. تابع نمایش لیست ثبت‌نام‌ها (برای مدیر سایت)
-        // این تابع با کلیک روی دکمه نمایش فراخوانی می‌شود و برای دسترسی نیاز به باز کردن کنسول مرورگر دارد.
+        // این تابع تنها زمانی فراخوانی می‌شود که روی دکمه مدیریت کلیک شود.
         window.showRegistrations = function() {
             const allRegistrations = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
             VIEW_SECTION.style.display = 'block';
@@ -265,12 +260,12 @@ M.Sayadi: };
             let htmlContent = '';
             
             allRegistrations.forEach((r, index) => {
-                // نمایش تاریخ و زمان به فرمت شمسی (بخش تنظیمات محلی مرورگر)
+                // تبدیل تاریخ و زمان به فرمت شمسی
                 const regDate = new Date(r.timestamp).toLocaleDateString('fa-IR') + ' ' + new Date(r.timestamp).toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
 
                 htmlContent += `
                     <div class="registration-item">
-                        <!-- دکمه لغو تنها در این بخش (که باید توسط مدیر استفاده شود) نمایش داده می شود -->
+                        <!-- دکمه لغو تنها در این بخش (که فقط مدیر دسترسی دارد) نمایش داده می شود -->
                         <button class="cancel-btn" onclick="cancelRegistration(${index})">❌ لغو</button>
                         <p><strong>مورد:</strong> ${index + 1}</p>
                         <p><strong>نام:</strong> ${r.name}</p>
@@ -291,18 +286,17 @@ M.Sayadi: };
             if (allRegistrations[indexToCancel]) {
                 const registrantName = allRegistrations[indexToCancel].name;
                 
-                // تایید نهایی برای جلوگیری از حذف تصادفی
-                if (confirm(`⚠️ هشدار: آیا مطمئنید که می‌خواهید ثبت‌نام ${registrantName} را به طور کامل لغو کنید؟ این عملیات در حافظه مرورگر انجام می‌شود.`)) {
+                // برای افزایش امنیت منطقی، از کاربر تایید نهایی می‌گیریم.
+                if (confirm(`⚠️ هشدار: آیا مطمئنید که می‌خواهید ثبت‌نام ${registrantName} را به طور کامل لغو کنید؟ این عملیات برگشت‌ناپذیر است (در localStorage).`)) {
                     allRegistrations.splice(indexToCancel, 1); 
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(allRegistrations));
                     
-                    // پس از حذف، لیست را مجدداً نمایش می‌دهیم تا به‌روز شود
+                    // پس از حذف، لیست را مجدداً نمایش می‌دهیم
                     showRegistrations(); 
                 }
             }
-       }
+        }
     </script>
 
 </body>
-</html>
-`
+    </html>
