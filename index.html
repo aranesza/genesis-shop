@@ -1,545 +1,308 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+M.Sayadi: <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پایگاه بسیج شهیدان نظری - ثبت‌نام کلاس‌ها</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <title>پایگاه شهیدان نظری - سامانه کلاس‌ها</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'B Nazanin', Tahoma;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-        }
+        /* استفاده از فونت رسمی Vazirmatn به عنوان پیش‌فرض خوب */
+        /* توجه: آدرس فونت Vazirmatn در کد اصلی شما ایراد داشت، این آدرس اصلاح شده است. */
+        @import url('https://v1.fontiran.com/css?family=Vazirmatn:400,500,700&display=swap');
 
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('1328.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            min-height: 100vh;
-            padding-bottom: 80px;
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
         }
-
-        body.light-mode {
-            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
-                        url('1328.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #222;
-        }
-
-        /* دکمه تغییر تم */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(199, 0, 0, 0.8);
-            border: 2px solid #ffd700;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffd700;
-            font-size: 1.5rem;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        body.light-mode .theme-toggle {
-            background: rgba(199, 0, 0, 0.9);
-            color: #ffd700;
-        }
-
-        /* هدر */
-        .basij-header {
-            background: rgba(199, 0, 0, 0.9);
-            color: #ffd700;
+        header {
+            background-color: #1a237e; 
+            color: #ffd700; 
             text-align: center;
-            padding: 1.5rem 1rem;
-            border-bottom: 4px solid #ffd700;
+            padding: 20px 0;
+            font-size: 1.8em;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+            text-shadow: 2px 2px 4px #000000; 
         }
-
-        body.light-mode .basij-header {
-            background: #c70000;
-            color: #ffd700;
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-right: 5px solid #ffd700;
         }
-
-        .basij-title {
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        h2 {
+            color: #1a237e;
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 12px;
+            font-weight: 700;
         }
-
-        .basij-subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
+        h3 {
+            color: #3f51b5;
+            margin-top: 25px;
         }
-
-        .shahid-name {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            margin-top: 0.8rem;
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 500;
+            color: #444;
+        }
+        input[type="text"], input[type="number"], input[type="tel"] {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #cccaca;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 1em;
+        }
+        input:focus {
+            border-color: #1a237e;
+            box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.2);
+            outline: none;
+        }
+        .checkbox-group label {
             display: inline-block;
-            border: 1px solid #ffd700;
-            font-size: 0.9rem;
-        }
-
-        body.light-mode .shahid-name {
-            background: rgba(255, 255, 255, 0.2);
-            color: #222;
-        }
-
-        /* محتوا */
-        .content-wrapper {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        /* کارت کلاس‌ها */
-        .classes-section {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-        }
-
-        body.light-mode .classes-section {
-            background: rgba(255, 255, 255, 0.95);
-            color: #222;
-            border: 2px solid rgba(199, 0, 0, 0.3);
-        }
-
-        .section-title {
-            color: #ffd700;
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.5);
-            padding-bottom: 0.5rem;
-        }
-
-        body.light-mode .section-title {
-            color: #c70000;
-            border-bottom: 2px solid rgba(199, 0, 0, 0.5);
-        }
-
-        .classes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1rem;
-        }
-
-        .class-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            padding: 1.2rem;
-            text-align: center;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            transition: all 0.3s;
-        }
-
-        body.light-mode .class-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(199, 0, 0, 0.2);
-        }
-
-        .class-card:hover {
-            background: rgba(199, 0, 0, 0.3);
-            transform: translateY(-3px);
-            border-color: #ffd700;
-        }
-
-        body.light-mode .class-card:hover {
-            background: rgba(199, 0, 0, 0.1);
-            border-color: #c70000;
-        }
-
-        .class-icon {
-            font-size: 2rem;
-            color: #ffd700;
-            margin-bottom: 0.5rem;
-        }
-
-        body.light-mode .class-icon {
-            color: #c70000;
-        }
-
-        .class-name {
-            font-weight: bold;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .class-desc {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-bottom: 1rem;
-        }
-
-        body.light-mode .class-desc {
+            font-weight: normal;
+            margin-right: 10px;
+            margin-left: 15px;
+            cursor: pointer;
             color: #555;
         }
-
-        .register-btn {
-            background: #c70000;
-            color: white;
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-left: 5px;
+            transform: scale(1.1);
+        }
+        
+        button {
+            padding: 12px 30px;
             border: none;
-            padding: 0.6rem 1rem;
-            border-radius: 20px;
-            width: 100%;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
+            margin-top: 25px;
+            font-size: 1.05em;
+            transition: background-color 0.3s, transform 0.1s;
+            font-weight: 500;
         }
-
-        .register-btn:hover {
-            background: #8b0000;
+        button:hover {
+            transform: translateY(-2px);
         }
-
-        /* مسابقات */
-        .competition-section {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            margin: 2rem 0;
-            border: 2px dashed rgba(255, 215, 0, 0.5);
+        #submitBtn {
+            background-color: #388e3c;
+            color: white;
+            box-shadow: 0 4px 10px rgba(56, 142, 60, 0.4);
         }
-
-        body.light-mode .competition-section {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px dashed rgba(199, 0, 0, 0.5);
+        #submitBtn:hover {
+            background-color: #2e7d32;
         }
-
-        .no-competition {
-            color: #ff9800;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        body.light-mode .no-competition {
-            color: #c70000;
-        }
-
-        /* اطلاعات تماس */
-        .contact-info {
-            background: rgba(0, 0, 0, 0.9);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            text-align: center;
-            border: 2px solid rgba(199, 0, 0, 0.5);
-        }
-
-        body.light-mode .contact-info {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid rgba(199, 0, 0, 0.5);
-        }
-
-        .contact-item {
-            margin: 0.8rem 0;
-            font-size: 0.95rem;
-        }
-
-        .contact-icon {
-            color: #ffd700;
-            margin-left: 0.5rem;
-        }
-
-        body.light-mode .contact-icon {
-            color: #c70000;
-        }
-
-        /* فوتر */
-        .basij-footer {
-            text-align: center;
-            padding: 1.5rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.3);
-            margin-top: 2rem;
-        }
-
-        body.light-mode .basij-footer {
-            color: #666;
-            border-top: 1px solid rgba(199, 0, 0, 0.3);
-        }
-
-        /* ناوبری پایین */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: rgba(199, 0, 0, 0.95);
-            display: flex;
-            justify-content: space-around;
-            padding: 0.8rem 0;
-            border-top: 2px solid #ffd700;
-            z-index: 100;
-        }
-
-        body.light-mode .bottom-nav {
-            background: #c70000;
-        }
-
-        .nav-item {
-            color: #ffd700;
-            text-decoration: none;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-
-        .nav-item i {
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
+        #viewBtn {
+            background-color: #00796b;
+            color: white;
             display: block;
+            width: 250px;
+            margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(0, 121, 107, 0.4);
         }
-
-        @media (max-width: 768px) {
-            .classes-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-            
-            .basij-title {
-                font-size: 1.3rem;
-            }
-            
-            .theme-toggle {
-                top: 10px;
-                left: 10px;
-                width: 45px;
-                height: 45px;
-            }
+        #viewBtn:hover {
+            background-color: #004d40;
+        }
+        
+        #resultSection {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px dashed #ccc;
+            display: none; 
+            background-color: #fafafa;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        #output {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .registration-item {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow:
+M.Sayadi: 0 2px 5px rgba(0, 0, 0, 0.05);
+            position: relative;
+            border-left: 4px solid #3f51b5;
+        }
+        .cancel-btn {
+            background-color: #d9534f;
+            color: white;
+            padding: 6px 12px;
+            font-size: 0.85em;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .cancel-btn:hover {
+            background-color: #c9302c;
+            transform: none;
+        }
+        .registration-item p {
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+        .registration-item strong {
+            color: #1a237e;
         }
     </style>
 </head>
 <body>
-    <!-- دکمه تغییر تم -->
-    <button class="theme-toggle" onclick="toggleTheme()">
-        <i class="bi bi-sun-fill" id="theme-icon"></i>
-    </button>
 
-    <!-- هدر -->
-    <header class="basij-header">
-        <div class="basij-title">
-            <i class="bi bi-flag-fill"></i> پایگاه بسیج شهیدان نظری
-        </div>
-        <div class="basij-subtitle">سامانه ثبت‌نام آنلاین کلاس‌های آموزشی</div>
-        <div class="shahid-name">
-            <i class="bi bi-stars"></i> به یاد شهید محمد ابراهیم هفت تن
-        </div>
+    <header>
+        پایگاه شهیدان نظری تقدیم می‌کند
     </header>
 
-    <!-- محتوای اصلی -->
-    <div class="content-wrapper">
-        <!-- کلاس‌ها -->
-        <section class="classes-section">
-            <h2 class="section-title"><i class="bi bi-mortarboard-fill"></i> کلاس‌های آموزشی پایگاه</h2>
+    <div class="container">
+        <h2>ثبت‌نام آنلاین کلاس‌ها</h2>
+        
+        <form id="registrationForm">
             
-            <div class="classes-grid">
-                <!-- برنامه‌نویسی -->
-                <div class="class-card">
-                    <i class="bi bi-code-slash class-icon"></i>
-                    <div class="class-name">برنامه‌نویسی</div>
-                    <div class="class-desc">مقدماتی تا پیشرفته</div>
-                    <button class="register-btn" onclick="registerClass('برنامه‌نویسی')">
-                        <i class="bi bi-pencil-square"></i> ثبت‌نام
-                    </button>
-                </div>
-                
-                <!-- فتوشاپ -->
-                <div class="class-card">
-                    <i class="bi bi-brush-fill class-icon"></i>
-                    <div class="class-name">فتوشاپ</div>
-                    <div class="class-desc">طراحی گرافیک</div>
-                    <button class="register-btn" onclick="registerClass('فتوشاپ')">
-                        <i class="bi bi-pencil-square"></i> ثبت‌نام
-                    </button>
-                </div>
-                
-                <!-- فوتبال -->
-                <div class="class-card">
-                    <i class="bi bi-person-running class-icon"></i>
-                    <div class="class-name">فوتبال هفتگی</div>
-                    <div class="class-desc">تمرین تیمی هفتگی</div>
-                    <button class="register-btn" onclick="registerClass('فوتبال هفتگی')">
-                        <i class="bi bi-pencil-square"></i> ثبت‌نام
-                    </button>
-                </div>
-                
-                <!-- برق -->
-                <div class="class-card">
-                    <i class="bi bi-lightning-charge-fill class-icon"></i>
-                    <div class="class-name">برق</div>
-                    <div class="class-desc">برق ساختمان</div>
-                    <button class="register-btn" onclick="registerClass('برق')">
-                        <i class="bi bi-pencil-square"></i> ثبت‌نام
-                    </button>
-                </div>
-                
-                <!-- رزمی -->
-                <div class="class-card">
-                    <i class="bi bi-shield-shaded class-icon"></i>
-                    <div class="class-name">باشگاه رزمی</div>
-                    <div class="class-desc">دفاع شخصی MMA</div>
-                    <button class="register-btn" onclick="registerClass('باشگاه رزمی MMA')">
-                        <i class="bi bi-pencil-square"></i> ثبت‌نام
-                    </button>
-                </div>
-                
-                <!-- احکام -->
-                <div class="class-card">
-                    <i class="bi bi-journal-bookmark-fill class-icon"></i>
-                    <div class="class-name">احکام</div>
-                    <div class="class-desc">آموزش مسائل شرعی</div>
-                    <button class="register-btn" onclick="registerClass('احکام')">
-                        <i class="bi bi-pencil-square"></i> ثبت‌نام
-                    </button>
-                </div>
-                
-                <!-- ویندوز -->
-                <div class="class-card">
-                    <i class="bi bi-pc-display class-icon"></i>
-                    <div class="class-name">نصب ویندوز</div>
-                    <div class="class-desc">آموزش نصب و تنظیمات</div>
-                    <button class="register-btn" onclick="registerClass('نصب ویندوز')">
-                        <i class="bi bi-pencil-square"></i> ثبت‌نام
-                    </button>
-                </div>
-                
-                <!-- عربی -->
-                <div class="class-card">
-                    <i class="bi bi-translate class-icon"></i>
-                    <div class="class-name">عربی</div>
-                    <div class="class-desc">آموزش زبان عربی</div>
-                    <button class="register-btn" onclick="registerClass('عربی')">
-                        <i class="bi bi-pencil-square"></i> ثبت‌نام
-                    </button>
-                </div>
+            <!-- بخش انتخاب کلاس -->
+            <div class="checkbox-group">
+                <label>انتخاب کلاس (می‌توانید چند گزینه را انتخاب کنید):</label><br>
+                <input type="checkbox" name="class" id="class_mma" value="کلاس رزمی (MMA)"> <label for="class_mma">کلاس رزمی (MMA)</label>
+                <input type="checkbox" name="class" id="class_win" value="کلاس نصب ویندوز"> <label for="class_win">کلاس نصب ویندوز</label><br>
+                <input type="checkbox" name="class" id="class_ahkam" value="کلاس احکام"> <label for="class_ahkam">کلاس احکام</label>
+                <input type="checkbox" name="class" id="class_bargh" value="کلاس برق"> <label for="class_bargh">کلاس برق</label>
+                <input type="checkbox" name="class" id="class_football" value="فوتبال هفتگی"> <label for="class_football">فوتبال هفتگی</label>
+            </div>
+
+            <hr style="border-color: #eee;">
+
+            <!-- بخش اطلاعات ثبت‌نام (همه اجباری) -->
+            <h3>اطلاعات شرکت‌کننده (همه موارد اجباری)</h3>
+            <label for="name">نام و نام خانوادگی:</label>
+            <input type="text" id="name" required placeholder="نام کامل را وارد کنید">
+
+            <label for="age">سن:</label>
+            <input type="number" id="age" required placeholder="سن شما">
+
+            <label for="phone">شماره تلفن:</label>
+            <input type="tel" id="phone" required placeholder="مثال: 0912xxxxxxx">
+
+            <br>
+            <button type="submit" id="submitBtn">✅ تأیید و ثبت‌نام نهایی</button>
+        </form>
+
+        <!-- دکمه مشاهده برای مدیر سایت -->
+        <!-- این دکمه را طوری طراحی کردم که فقط در حالت توسعه یا توسط کسی که به کنسول دسترسی دارد قابل استفاده باشد -->
+        <button id="viewBtn" onclick="showRegistrations()">🔍 مشاهده و مدیریت ثبت‌نام‌ها (تنها برای مدیر)</button>
+
+        <!-- بخش نمایش و مدیریت -->
+        <section id="resultSection">
+            <h2>لیست ثبت‌نام‌کنندگان</h2>
+            <div id="output">
+                <!-- لیست اینجا توسط جاوااسکریپت پر می‌شود -->
             </div>
         </section>
 
-        <!-- مسابقات -->
-        <section class="competition-section">
-            <i class="bi bi-calendar-x" style="font-size: 3rem; color: #ff9800; margin-bottom: 1rem;"></i>
-            <div class="no-competition">مسابقه‌ای در حال برگزاری نیست</div>
-            <p>به زودی مسابقات جدید اطلاع‌رسانی خواهد شد</p>
-        </section>
-
-        <!-- اطلاعات تماس -->
-        <section class="contact-info">
-            <h2 class="section-title"><i class="bi bi-telephone-fill"></i> راه‌های ارتباطی</h2>
-            
-            <div class="contact-item">
-                <i class="bi bi-whatsapp contact-icon"></i>
-                واتساپ: ۰۹۱۷۸۷۹۲۳۴۹۵
-            </div>
-            
-            <div class="contact-item">
-                <i class="bi bi-envelope-fill contact-icon"></i>
-                ایمیل: stemai-sed@piqiu.com
-            </div>
-            
-            <div class="contact-item">
-                <i class="bi bi-geo-alt-fill contact-icon"></i>
-                آدرس: پایگاه بسیج شهیدان نظری
-            </div>
-        </section>
     </div>
 
-    <!-- فوتر -->
-    <footer class="basij-footer">
-        <div>پایگاه بسیج شهیدان نظری - مفتخریم در خدمت‌رسانی</div>
-        <div style="margin-top: 0.5rem; font-size: 0.8rem;">
-            © ۲۰۲۴ - کلیه حقوق محفوظ است
-        </div>
-    </footer>
-
-    <!-- ناوبری پایین -->
-    <nav class="bottom-nav">
-        <a href="#" class="nav-item">
-            <i class="bi bi-house-door"></i>
-            خانه
-        </a>
-        <a href="#" class="nav-item" onclick="showAllClasses()">
-            <i class="bi bi-list-check"></i>
-            کلاس‌ها
-        </a>
-        <a href="#" class="nav-item" onclick="showContactInfo()">
-            <i class="bi bi-info-circle"></i>
-            اطلاعات
-        </a>
-        <a href="#" class="nav-item">
-            <i class="bi bi-person-circle"></i>
-            پروفایل
-        </a>
-    </nav>
-
     <script>
-        // تغییر تم
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.getElementById('theme-icon');
-            
-            if (body.classList.contains('light-mode')) {
-                body.classList.remove('light-mode');
-                icon.classList.remove('bi-moon-fill');
-                icon.classList.add('bi-sun-fill');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.classList.add('light-mode');
-                icon.classList.remove('bi-sun-fill');
-                icon.classList.add('bi-moon-fill');
-                localStorage.setItem('theme', 'light');
-            }
-        }
+        const FORM = document.getElementById('registrationForm');
+        const VIEW_SECTION = document.getElementById('resultSection');
+        const OUTPUT_DIV = document.getElementById('output');
+        // کلید ذخیره سازی در حافظه مرورگر
+        const STORAGE_KEY = 'classRegistrations_NazariBase'; 
 
-        // بارگذاری تم ذخیره شده
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            const icon = document.getElementById('theme-icon');
+        // 1. مدیریت ارسال فرم (ثبت‌نام)
+        FORM.addEventListener('submit', function(event) {
+            event.preventDefault();
             
-            if (savedTheme === 'light') {
-                document.body.classList.add('light-mode');
-                icon.classList.remove('bi-sun-fill');
-                icon.classList.add('bi-moon-fill');
+            const selectedClasses = Array.from(document.querySelectorAll('input[name="class"]:checked'))
+                                        .map(el => el.value);
+
+            if (selectedClasses.length === 0) {
+                alert("⚠️ لطفاً حداقل یک کلاس را برای ثبت‌نام انتخاب کنید.");
+                return;
             }
+
+            const newRegistration = {
+                name: document.getElementById("name").value,
+                age: document.getElementById("age").value,
+                phone: document.getElementById("phone").value,
+                classes: selectedClasses,
+                timestamp: new Date().toISOString()
+M.Sayadi: };
+
+            // دریافت لیست قبلی یا ایجاد لیست جدید
+            let allRegistrations = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            allRegistrations.push(newRegistration);
             
-            console.log('سایت پایگاه بسیج شهیدان نظری آماده است');
+            // ذخیره لیست به روز شده
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(allRegistrations));
+
+            alert("✅ ثبت‌نام شما با موفقیت انجام شد. لطفاً برای مشاهده لیست نهایی، از طریق پنل مدیریت اقدام نمایید.");
+            FORM.reset(); 
+            VIEW_SECTION.style.display = 'none'; 
         });
 
-        // ثبت‌نام در کلاس
-        function registerClass(className) {
-            alert(`ثبت‌نام در کلاس "${className}"\n\nبرای تکمیل ثبت‌نام با شماره واتساپ تماس بگیرید:\n۰۹۱۷۸۷۹۲۳۴۹۵`);
+        // 2. تابع نمایش لیست ثبت‌نام‌ها (برای مدیر سایت)
+        // این تابع با کلیک روی دکمه نمایش فراخوانی می‌شود و برای دسترسی نیاز به باز کردن کنسول مرورگر دارد.
+        window.showRegistrations = function() {
+            const allRegistrations = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            VIEW_SECTION.style.display = 'block';
+
+            if (allRegistrations.length === 0) {
+                OUTPUT_DIV.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; padding: 20px; background: #fff; border-radius: 8px;">تا این لحظه هیچ ثبت‌نامی انجام نشده است.</p>';
+                return;
+            }
+
+            let htmlContent = '';
             
-            // ذخیره در حافظه مرورگر
-            let registrations = JSON.parse(localStorage.getItem('basij_registrations') || '[]');
-            registrations.push({
-                class: className,
-                date: new Date().toLocaleString('fa-IR'),
-                timestamp: Date.now()
+            allRegistrations.forEach((r, index) => {
+                // نمایش تاریخ و زمان به فرمت شمسی (بخش تنظیمات محلی مرورگر)
+                const regDate = new Date(r.timestamp).toLocaleDateString('fa-IR') + ' ' + new Date(r.timestamp).toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
+
+                htmlContent += `
+                    <div class="registration-item">
+                        <!-- دکمه لغو تنها در این بخش (که باید توسط مدیر استفاده شود) نمایش داده می شود -->
+                        <button class="cancel-btn" onclick="cancelRegistration(${index})">❌ لغو</button>
+                        <p><strong>مورد:</strong> ${index + 1}</p>
+                        <p><strong>نام:</strong> ${r.name}</p>
+                        <p><strong>سن:</strong> ${r.age}</p>
+                        <p><strong>تلفن:</strong> ${r.phone}</p>
+                        <p style="font-size: 0.9em;"><strong>کلاس‌ها:</strong> ${r.classes.join("، ")}</p>
+                        <small>تاریخ ثبت: ${regDate}</small>
+                    </div>
+                `;
             });
-            localStorage.setItem('basij_registrations', JSON.stringify(registrations));
+            OUTPUT_DIV.innerHTML = htmlContent;
         }
 
-        // نمایش همه کلاس‌ها
-        function showAllClasses() {
-            alert('لیست کامل کلاس‌ها:\n\n۱. برنامه‌نویسی\n۲. فتوشاپ\n۳. فوتبال هفتگی\n۴. برق\n۵. باشگاه رزمی MMA\n۶. احکام\n۷. نصب ویندوز\n۸. عربی');
-        }
-
-        // نمایش اطلاعات تماس
-        function showContactInfo() {
-            alert('📞 راه‌های ارتباطی:\n\nواتساپ: ۰۹۱۷۸۷۹۲۳۴۹۵\nایمیل: stemai-sed@piqiu.com\n\nساعات پاسخگویی: ۸ صبح تا ۸ شب');
-        }
+        // 3. تابع لغو ثبت‌نام (تنها در دسترس مدیر از طریق showRegistrations)
+        window.cancelRegistration = function(indexToCancel) {
+            let allRegistrations = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            
+            if (allRegistrations[indexToCancel]) {
+                const registrantName = allRegistrations[indexToCancel].name;
+                
+                // تایید نهایی برای جلوگیری از حذف تصادفی
+                if (confirm(`⚠️ هشدار: آیا مطمئنید که می‌خواهید ثبت‌نام ${registrantName} را به طور کامل لغو کنید؟ این عملیات در حافظه مرورگر انجام می‌شود.`)) {
+                    allRegistrations.splice(indexToCancel, 1); 
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(allRegistrations));
+                    
+                    // پس از حذف، لیست را مجدداً نمایش می‌دهیم تا به‌روز شود
+                    showRegistrations(); 
+                }
+            }
+       }
     </script>
+
 </body>
-                        </html>
+</html>
+`
